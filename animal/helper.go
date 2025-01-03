@@ -3,6 +3,7 @@ package animal
 import (
 	"encoding/json"
 	"encoding/xml"
+	"fmt"
 	"net/http"
 )
 
@@ -19,6 +20,7 @@ func EncodeToJson(w http.ResponseWriter, v any, code int) {
 func EncodeToXml(w http.ResponseWriter, v any, code int) {
 	w.Header().Set("Content-Type", "application/xml; charset=utf-8")
 	w.WriteHeader(code)
+	_, _ = fmt.Fprint(w, xml.Header)
 	_ = xml.NewEncoder(w).Encode(v)
 }
 
