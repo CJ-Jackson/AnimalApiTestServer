@@ -1,6 +1,7 @@
 package animal
 
 import (
+	"fmt"
 	"net/http"
 	"strconv"
 )
@@ -17,6 +18,10 @@ type SingleAnimal struct {
 
 type AnimalCollection struct {
 	Animals []Animal
+}
+
+type DeleteAnimalData struct {
+	Id int64
 }
 
 type Animals []Animal
@@ -36,7 +41,7 @@ var collectionOfAnimals Animals = Animals{
 
 func ListAnimal(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusMethodNotAllowed)}, http.StatusMethodNotAllowed)
 		return
 	}
 	Encode(w, r, AnimalCollection{Animals: collectionOfAnimals}, http.StatusOK)
@@ -44,11 +49,11 @@ func ListAnimal(w http.ResponseWriter, r *http.Request) {
 
 func GetAnimal(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "GET" {
-		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusMethodNotAllowed)}, http.StatusMethodNotAllowed)
 		return
 	}
-	id_str := r.PathValue("id")
-	id, err := strconv.ParseInt(id_str, 10, 64)
+	idStr := r.PathValue("id")
+	id, err := strconv.ParseInt(idStr, 10, 64)
 	if err != nil {
 		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusBadRequest)}, http.StatusBadRequest)
 		return
@@ -63,7 +68,7 @@ func GetAnimal(w http.ResponseWriter, r *http.Request) {
 
 func PostAnimal(w http.ResponseWriter, r *http.Request) {
 	if r.Method != "POST" {
-		http.Error(w, http.StatusText(405), http.StatusMethodNotAllowed)
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusMethodNotAllowed)}, http.StatusMethodNotAllowed)
 		return
 	}
 
@@ -76,4 +81,59 @@ func PostAnimal(w http.ResponseWriter, r *http.Request) {
 
 	collectionOfAnimals = append(collectionOfAnimals, singleAnimal.Animal)
 	Encode(w, r, *singleAnimal, http.StatusOK)
+}
+
+func DeleteAnimal(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "DELETE" {
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusMethodNotAllowed)}, http.StatusMethodNotAllowed)
+		return
+	}
+
+	deleteAnimal := &DeleteAnimalData{}
+	err := Decode(deleteAnimal, r)
+	if err != nil {
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusBadRequest)}, http.StatusBadRequest)
+		return
+	}
+
+	if int64(len(collectionOfAnimals)) <= deleteAnimal.Id {
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusNotFound)}, http.StatusNotFound)
+		return
+	}
+
+	collectionOfAnimals = append(collectionOfAnimals[:deleteAnimal.Id], collectionOfAnimals[deleteAnimal.Id+1:]...)
+
+	Encode(w, r, Message{
+		Message: fmt.Sprintf("'%d' has been deleted.", deleteAnimal.Id),
+	}, http.StatusOK)
+}
+
+func PatchAnimal(w http.ResponseWriter, r *http.Request) {
+	if r.Method != "PATCH" {
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusMethodNotAllowed)}, http.StatusMethodNotAllowed)
+		return
+	}
+
+	idStr := r.PathValue("id")
+	id, err := strconv.ParseInt(idStr, 10, 64)
+	if err != nil {
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusBadRequest)}, http.StatusBadRequest)
+		return
+	}
+
+	singleAnimal := &SingleAnimal{}
+	err = Decode(singleAnimal, r)
+	if err != nil {
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusBadRequest)}, http.StatusBadRequest)
+		return
+	}
+
+	if int64(len(collectionOfAnimals)) <= id {
+		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusNotFound)}, http.StatusNotFound)
+		return
+	}
+
+	collectionOfAnimals[int(id)] = singleAnimal.Animal
+
+	Encode(w, r, Message{fmt.Sprintf("'%d' has been updated", id)}, http.StatusOK)
 }

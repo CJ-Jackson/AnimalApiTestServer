@@ -11,6 +11,10 @@ type HttpStatus struct {
 	Status string
 }
 
+type Message struct {
+	Message string
+}
+
 func EncodeToJson(w http.ResponseWriter, v any, code int) {
 	w.Header().Set("Content-Type", "application/json; charset=utf-8")
 	w.WriteHeader(code)
