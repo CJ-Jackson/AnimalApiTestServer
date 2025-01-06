@@ -1,4 +1,4 @@
-# /patch-animal/{id}
+# /animal/patch/{id}
 group = "animals"
 title = "Update Animal"
 

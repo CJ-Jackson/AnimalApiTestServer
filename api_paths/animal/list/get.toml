@@ -1,4 +1,4 @@
-# /list-animals
+# /animal/list
 group = "animals"
 title = "List animals"
 
