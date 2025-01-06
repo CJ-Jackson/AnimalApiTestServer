@@ -3,7 +3,7 @@ group = "animals"
 title = "Get animal by id"
 
 summary = '''
-Get a animal by id number
+Get an animal by id number
 '''
 
 [data.'arg type']

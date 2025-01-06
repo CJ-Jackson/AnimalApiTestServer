@@ -3,7 +3,7 @@ group = "animals"
 title = "Delete Animal"
 
 summary = '''
-Delete a animal
+Delete an animal
 '''
 
 [data.'payload `application/json; charset=utf-8`']

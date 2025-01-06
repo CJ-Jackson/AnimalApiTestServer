@@ -3,7 +3,7 @@
 
 ### DELETE: `/animal/delete` Delete Animal
 
-Delete a animal
+Delete an animal
 
 #### payload `application/json; charset=utf-8`
 
@@ -41,7 +41,7 @@ Delete a animal
 
 ### GET: `/animal/get/{id}` Get animal by id
 
-Get a animal by id number
+Get an animal by id number
 
 #### arg type
 
