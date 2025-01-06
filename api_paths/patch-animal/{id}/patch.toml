@@ -6,7 +6,7 @@ summary = '''
 Updated an existing animal
 '''
 
-[data.type]
+[data.'arg type']
 content = '''
 id: int
 '''

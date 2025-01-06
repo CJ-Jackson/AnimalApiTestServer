@@ -5,7 +5,7 @@
 
 Get a animal by id number
 
-#### type
+#### arg type
 
 ```
 id: int
@@ -109,7 +109,7 @@ Get a list of all animals
 
 Updated an existing animal
 
-#### type
+#### arg type
 
 ```
 id: int

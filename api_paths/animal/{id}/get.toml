@@ -6,7 +6,7 @@ summary = '''
 Get a animal by id number
 '''
 
-[data.type]
+[data.'arg type']
 content = '''
 id: int
 '''
