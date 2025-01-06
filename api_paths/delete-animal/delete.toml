@@ -1,0 +1,34 @@
+# /delete-animal
+group = "animals"
+title = "Delete Animal"
+
+summary = '''
+Delete a animal
+'''
+
+[data.'payload `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Id": 8
+}'''
+
+[data.'payload `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<DeleteAnimalData>
+    <Id>8</Id>
+</DeleteAnimalData>'''
+
+
+[data.'response `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Message": "'8' has been deleted."
+}'''
+
+[data.'response `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<Message>
+    <Message>'8' has been deleted.</Message>
+</Message>'''

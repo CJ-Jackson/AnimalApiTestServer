@@ -1,0 +1,46 @@
+# /patch-animal/{id}
+group = "animals"
+title = "Update Animal"
+
+summary = '''
+Updated an existing animal
+'''
+
+[data.type]
+content = '''
+id: int
+'''
+
+[data.'payload `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Animal": {
+    "Id": 8,
+    "Name": "Charizard",
+    "Description": "Ash's companion"
+  }
+}'''
+
+[data.'payload `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<SingleAnimal>
+    <Animal Id="8">
+        <Name>Charizard</Name>
+        <Description>Ash's companion</Description>
+    </Animal>
+</SingleAnimal>'''
+
+
+[data.'response `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Message": "'8' has been updated."
+}'''
+
+[data.'response `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<Message>
+    <Message>'8' has been updated.</Message>
+</Message>'''

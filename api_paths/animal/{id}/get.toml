@@ -1,0 +1,32 @@
+# /animal/{id}
+group = "animals"
+title = "Get animal by id"
+
+summary = '''
+Get a animal by id number
+'''
+
+[data.type]
+content = '''
+id: int
+'''
+
+[data.'response `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Animal": {
+    "Id": 8,
+    "Name": "Pikachu",
+    "Description": "Ash's companion"
+  }
+}'''
+
+[data.'response `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<SingleAnimal>
+    <Animal Id="8">
+        <Name>Pikachu</Name>
+        <Description>Ash's companion</Description>
+    </Animal>
+</SingleAnimal>'''

@@ -1,0 +1,31 @@
+# /list-animals
+group = "animals"
+title = "List animals"
+
+summary = '''
+Get a list of all animals
+'''
+
+[data.'response `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Animals": [
+    {
+      "Id": 1,
+      "Name": "Cat",
+      "Description": "House Cat"
+    },
+    ...
+  ]
+}'''
+
+[data.'response `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<AnimalCollection>
+    <Animals Id="1">
+        <Name>Cat</Name>
+        <Description>House Cat</Description>
+    </Animals>
+    ...
+</AnimalCollection>'''

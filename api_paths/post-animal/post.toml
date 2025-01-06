@@ -1,0 +1,48 @@
+# /post-animal
+group = "animals"
+title = "Post animals"
+
+summary = '''
+Add a new animal
+'''
+
+[data.'payload `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Animal": {
+    "Id": 20,
+    "Name": "Charizard",
+    "Description": "Ash's companion"
+  }
+}'''
+
+[data.'payload `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<SingleAnimal>
+    <Animal Id="20">
+        <Name>Charizard</Name>
+        <Description>Ash's companion</Description>
+    </Animal>
+</SingleAnimal>'''
+
+
+[data.'response `application/json; charset=utf-8`']
+type = "json"
+content = '''{
+  "Animal": {
+    "Id": 20,
+    "Name": "Charizard",
+    "Description": "Ash's companion"
+  }
+}'''
+
+[data.'response `application/xml; charset=utf-8`']
+type = "xml"
+content = '''<?xml version="1.0" encoding="utf-8"?>
+<SingleAnimal>
+    <Animal Id="20">
+        <Name>Charizard</Name>
+        <Description>Ash's companion</Description>
+    </Animal>
+</SingleAnimal>'''
