@@ -1,13 +1,18 @@
 # API Doc
 ## animals
+
 ### GET: `/animal/{id}` Get animal by id
+
 Get a animal by id number
 
 #### type
+
 ```
 id: int
 ```
+
 #### response `application/json; charset=utf-8`
+
 ```json
 {
   "Animal": {
@@ -17,7 +22,9 @@ id: int
   }
 }
 ```
+
 #### response `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SingleAnimal>
@@ -27,39 +34,51 @@ id: int
     </Animal>
 </SingleAnimal>
 ```
+
 ### DELETE: `/delete-animal` Delete Animal
+
 Delete a animal
 
 #### payload `application/json; charset=utf-8`
+
 ```json
 {
   "Id": 8
 }
 ```
+
 #### payload `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <DeleteAnimalData>
     <Id>8</Id>
 </DeleteAnimalData>
 ```
+
 #### response `application/json; charset=utf-8`
+
 ```json
 {
   "Message": "'8' has been deleted."
 }
 ```
+
 #### response `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Message>
     <Message>'8' has been deleted.</Message>
 </Message>
 ```
+
 ### GET: `/list-animals` List animals
+
 Get a list of all animals
 
 #### response `application/json; charset=utf-8`
+
 ```json
 {
   "Animals": [
@@ -72,7 +91,9 @@ Get a list of all animals
   ]
 }
 ```
+
 #### response `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <AnimalCollection>
@@ -83,14 +104,19 @@ Get a list of all animals
     ...
 </AnimalCollection>
 ```
+
 ### PATCH: `/patch-animal/{id}` Update Animal
+
 Updated an existing animal
 
 #### type
+
 ```
 id: int
 ```
+
 #### payload `application/json; charset=utf-8`
+
 ```json
 {
   "Animal": {
@@ -100,7 +126,9 @@ id: int
   }
 }
 ```
+
 #### payload `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SingleAnimal>
@@ -110,23 +138,30 @@ id: int
     </Animal>
 </SingleAnimal>
 ```
+
 #### response `application/json; charset=utf-8`
+
 ```json
 {
   "Message": "'8' has been updated."
 }
 ```
+
 #### response `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <Message>
     <Message>'8' has been updated.</Message>
 </Message>
 ```
+
 ### POST: `/post-animal` Post animals
+
 Add a new animal
 
 #### payload `application/json; charset=utf-8`
+
 ```json
 {
   "Animal": {
@@ -136,7 +171,9 @@ Add a new animal
   }
 }
 ```
+
 #### payload `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SingleAnimal>
@@ -146,7 +183,9 @@ Add a new animal
     </Animal>
 </SingleAnimal>
 ```
+
 #### response `application/json; charset=utf-8`
+
 ```json
 {
   "Animal": {
@@ -156,7 +195,9 @@ Add a new animal
   }
 }
 ```
+
 #### response `application/xml; charset=utf-8`
+
 ```xml
 <?xml version="1.0" encoding="utf-8"?>
 <SingleAnimal>
