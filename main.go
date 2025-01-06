@@ -7,11 +7,11 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/list-animals", animal.ListAnimal)
-	http.HandleFunc("/animal/{id}", animal.GetAnimal)
-	http.HandleFunc("/post-animal", animal.PostAnimal)
-	http.HandleFunc("/delete-animal", animal.DeleteAnimal)
-	http.HandleFunc("/patch-animal/{id}", animal.PatchAnimal)
+	http.HandleFunc("/animal/delete", animal.DeleteAnimal)
+	http.HandleFunc("/animal/get/{id}", animal.GetAnimal)
+	http.HandleFunc("/animal/list", animal.ListAnimal)
+	http.HandleFunc("/animal/post", animal.PostAnimal)
+	http.HandleFunc("/animal/update/{id}", animal.PatchAnimal)
 
 	log.Fatal(http.ListenAndServe(":18080", nil))
 }
