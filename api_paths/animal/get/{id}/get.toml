@@ -1,32 +1,38 @@
-# /animal/get/{id}
-group = "animals"
-title = "Get animal by id"
+[openapi_paths]
+summary = "Get Animal by ID"
+operationId = "getAnimalById"
+tags = ["animals"]
 
-summary = '''
-Get an animal by id number
-'''
+[[openapi_paths.parameters]]
+name = "id"
+in = "path"
+description = "Animal Id"
+required = true
+schema = { type = "integer", format = "int64" }
 
-[data.'arg type']
-content = '''
-id: int
-'''
+[openapi_paths.responses.200]
+description = "An object that contains a single animal"
 
-[data.'response `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Animal": {
-    "Id": 8,
-    "Name": "Pikachu",
-    "Description": "Ash's companion"
-  }
-}'''
+[openapi_paths.responses.200.content.'application/json'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
 
-[data.'response `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<SingleAnimal>
-    <Animal Id="8">
-        <Name>Pikachu</Name>
-        <Description>Ash's companion</Description>
-    </Animal>
-</SingleAnimal>'''
+[openapi_paths.responses.200.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
+
+[openapi_paths.responses.400.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.400.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.404.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.404.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"

@@ -1,0 +1,25 @@
+[openapi_components.schemas.Animal]
+type = "object"
+
+[openapi_components.schemas.Animal.properties]
+Id = { type = "integer", format = "int64", xml = { attribute = true } }
+Name = { type = "string" }
+Description = { type = "string" }
+
+[openapi_components.schemas.SingleAnimal]
+type = "object"
+
+[openapi_components.schemas.SingleAnimal.properties]
+Animal = { '$ref' = "#/components/schemas/Animal" }
+
+[openapi_components.schemas.DeleteAnimal]
+type = "object"
+
+[openapi_components.schemas.DeleteAnimal.properties]
+Id = { type = "integer" }
+
+[openapi_components.schemas.AnimalCollection]
+type = "object"
+
+[openapi_components.schemas.AnimalCollection.properties]
+Animals = { type = "array", items = { '$ref' = '#/components/schemas/Animal' } }

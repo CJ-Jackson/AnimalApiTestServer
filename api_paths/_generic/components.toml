@@ -1,0 +1,11 @@
+[openapi_components.schemas.Message]
+type = "object"
+
+[openapi_components.schemas.Message.properties]
+Message = { type = "string" }
+
+[openapi_components.schemas.HttpStatus]
+type = "object"
+
+[openapi_components.schemas.HttpStatus.properties]
+Status = { type = "string" }

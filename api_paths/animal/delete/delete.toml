@@ -1,34 +1,37 @@
-# /animal/delete
-group = "animals"
-title = "Delete Animal"
+[openapi_paths]
+summary = "Delete an animal"
+operationId = "deleteAnimal"
+tags = ["animals"]
 
-summary = '''
-Delete an animal
-'''
+[openapi_paths.requestBody.content.'application/json'.schema]
+'$ref' = "#/components/schemas/DeleteAnimal"
 
-[data.'payload `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Id": 8
-}'''
+[openapi_paths.requestBody.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/DeleteAnimal"
 
-[data.'payload `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<DeleteAnimalData>
-    <Id>8</Id>
-</DeleteAnimalData>'''
+[openapi_paths.responses.200]
+description = "An object that contains the message"
 
+[openapi_paths.responses.200.content.'application/json'.schema]
+'$ref' = "#/components/schemas/Message"
 
-[data.'response `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Message": "'8' has been deleted."
-}'''
+[openapi_paths.responses.200.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/Message"
 
-[data.'response `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<Message>
-    <Message>'8' has been deleted.</Message>
-</Message>'''
+[openapi_paths.responses.400.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.400.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.404.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.404.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"

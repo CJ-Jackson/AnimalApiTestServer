@@ -1,31 +1,19 @@
-# /animal/list
-group = "animals"
-title = "List animals"
+[openapi_paths]
+summary = "Fetch List of Animals"
+operationId = "getListAnimals"
+tags = ["animals"]
 
-summary = '''
-Get a list of all animals
-'''
+[openapi_paths.responses.200]
+description = "An object that contains a single animal"
 
-[data.'response `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Animals": [
-    {
-      "Id": 1,
-      "Name": "Cat",
-      "Description": "House Cat"
-    },
-    ...
-  ]
-}'''
+[openapi_paths.responses.200.content.'application/json'.schema]
+'$ref' = "#/components/schemas/AnimalCollection"
 
-[data.'response `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<AnimalCollection>
-    <Animals Id="1">
-        <Name>Cat</Name>
-        <Description>House Cat</Description>
-    </Animals>
-    ...
-</AnimalCollection>'''
+[openapi_paths.responses.200.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/AnimalCollection"
+
+[openapi_paths.responses.405.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"

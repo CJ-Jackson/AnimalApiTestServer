@@ -1,46 +1,44 @@
-# /animal/patch/{id}
-group = "animals"
-title = "Update Animal"
+[openapi_paths]
+summary = "Update an animal"
+operationId = "patchUpdateAnimal"
+tags = ["animals"]
 
-summary = '''
-Updated an existing animal
-'''
+[[openapi_paths.parameters]]
+name = "id"
+in = "path"
+description = "Animal Id"
+required = true
+schema = { type = "integer", format = "int64" }
 
-[data.'arg type']
-content = '''
-id: int
-'''
+[openapi_paths.requestBody.content.'application/json'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
 
-[data.'payload `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Animal": {
-    "Id": 8,
-    "Name": "Charizard",
-    "Description": "Ash's companion"
-  }
-}'''
+[openapi_paths.requestBody.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
 
-[data.'payload `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<SingleAnimal>
-    <Animal Id="8">
-        <Name>Charizard</Name>
-        <Description>Ash's companion</Description>
-    </Animal>
-</SingleAnimal>'''
+[openapi_paths.responses.200]
+description = "Returns the same animal that was posted"
 
+[openapi_paths.responses.200.content.'application/json'.schema]
+'$ref' = "#/components/schemas/Message"
 
-[data.'response `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Message": "'8' has been updated."
-}'''
+[openapi_paths.responses.200.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/Message"
 
-[data.'response `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<Message>
-    <Message>'8' has been updated.</Message>
-</Message>'''
+[openapi_paths.responses.400.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.400.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.404.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.404.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"

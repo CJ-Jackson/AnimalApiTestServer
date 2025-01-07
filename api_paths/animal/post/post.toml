@@ -1,48 +1,31 @@
-# /animal/post
-group = "animals"
-title = "Post animals"
+[openapi_paths]
+summary = "Add an animal"
+operationId = "postAddAnimal"
+tags = ["animals"]
 
-summary = '''
-Add a new animal
-'''
+[openapi_paths.requestBody.content.'application/json'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
 
-[data.'payload `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Animal": {
-    "Id": 20,
-    "Name": "Charizard",
-    "Description": "Ash's companion"
-  }
-}'''
+[openapi_paths.requestBody.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
 
-[data.'payload `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<SingleAnimal>
-    <Animal Id="20">
-        <Name>Charizard</Name>
-        <Description>Ash's companion</Description>
-    </Animal>
-</SingleAnimal>'''
+[openapi_paths.responses.200]
+description = "Returns the same animal that was posted"
 
+[openapi_paths.responses.200.content.'application/json'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
 
-[data.'response `application/json; charset=utf-8`']
-type = "json"
-content = '''{
-  "Animal": {
-    "Id": 20,
-    "Name": "Charizard",
-    "Description": "Ash's companion"
-  }
-}'''
+[openapi_paths.responses.200.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/SingleAnimal"
 
-[data.'response `application/xml; charset=utf-8`']
-type = "xml"
-content = '''<?xml version="1.0" encoding="utf-8"?>
-<SingleAnimal>
-    <Animal Id="20">
-        <Name>Charizard</Name>
-        <Description>Ash's companion</Description>
-    </Animal>
-</SingleAnimal>'''
+[openapi_paths.responses.400.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.400.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/json'.schema]
+'$ref' = "#/components/schemas/HttpStatus"
+
+[openapi_paths.responses.405.content.'application/xml'.schema]
+'$ref' = "#/components/schemas/HttpStatus"

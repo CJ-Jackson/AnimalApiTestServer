@@ -1,0 +1,16 @@
+openapi = "3.1.0"
+
+#schemas = ["http"]
+
+[info]
+title = "AnimalApiTestServer"
+description = "Test Api Server for testing RestTOML"
+version = "0.1.0"
+
+[[servers]]
+url = "http://127.0.0.1:18080"
+description = "Animal Api Test Server"
+
+[[tags]]
+name = "animals"
+description = "Everything about Animals"
