@@ -29,8 +29,8 @@ func EncodeToXml(w http.ResponseWriter, v any, code int) {
 }
 
 func Encode(w http.ResponseWriter, r *http.Request, v any, code int) {
-	contentType := r.Header.Get("Content-Type")
-	if contentType == "application/xml; charset=utf-8" {
+	accept := r.Header.Get("Accept")
+	if accept == "application/xml" {
 		EncodeToXml(w, v, code)
 	} else {
 		EncodeToJson(w, v, code)
@@ -38,8 +38,8 @@ func Encode(w http.ResponseWriter, r *http.Request, v any, code int) {
 }
 
 func Decode(v any, r *http.Request) error {
-	contentType := r.Header.Get("Content-Type")
-	if contentType == "application/xml; charset=utf-8" {
+	accept := r.Header.Get("Accept")
+	if accept == "application/xml" {
 		return xml.NewDecoder(r.Body).Decode(v)
 	} else {
 		return json.NewDecoder(r.Body).Decode(v)
