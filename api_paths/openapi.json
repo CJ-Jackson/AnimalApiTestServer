@@ -18,27 +18,25 @@
     }
   ],
   "paths": {
-    "/animal/delete": {
+    "/animal/delete/{id}": {
       "delete": {
         "summary": "Delete an animal",
         "operationId": "deleteAnimal",
         "tags": [
           "animals"
         ],
-        "requestBody": {
-          "content": {
-            "application/json": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteAnimal"
-              }
-            },
-            "application/xml": {
-              "schema": {
-                "$ref": "#/components/schemas/DeleteAnimal"
-              }
+        "parameters": [
+          {
+            "name": "id",
+            "in": "path",
+            "description": "Animal Id",
+            "required": true,
+            "schema": {
+              "type": "integer",
+              "format": "int64"
             }
           }
-        },
+        ],
         "responses": {
           "200": {
             "description": "An object that contains the message",
@@ -403,22 +401,6 @@
           }
         }
       },
-      "SingleAnimal": {
-        "type": "object",
-        "properties": {
-          "Animal": {
-            "$ref": "#/components/schemas/Animal"
-          }
-        }
-      },
-      "DeleteAnimal": {
-        "type": "object",
-        "properties": {
-          "Id": {
-            "type": "integer"
-          }
-        }
-      },
       "AnimalCollection": {
         "type": "object",
         "properties": {
@@ -430,11 +412,11 @@
           }
         }
       },
-      "Message": {
+      "DeleteAnimal": {
         "type": "object",
         "properties": {
-          "Message": {
-            "type": "string"
+          "Id": {
+            "type": "integer"
           }
         }
       },
@@ -443,6 +425,22 @@
         "properties": {
           "Status": {
             "type": "string"
+          }
+        }
+      },
+      "Message": {
+        "type": "object",
+        "properties": {
+          "Message": {
+            "type": "string"
+          }
+        }
+      },
+      "SingleAnimal": {
+        "type": "object",
+        "properties": {
+          "Animal": {
+            "$ref": "#/components/schemas/Animal"
           }
         }
       }

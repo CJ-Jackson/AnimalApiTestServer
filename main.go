@@ -7,7 +7,10 @@ import (
 )
 
 func main() {
-	http.HandleFunc("/animal/delete", animal.DeleteAnimal)
+	http.HandleFunc("/", animal.GetDocumentation)
+	http.HandleFunc("/doc/openapi", animal.GetOpenAPIDocumentation)
+
+	http.HandleFunc("/animal/delete/{id}", animal.DeleteAnimal)
 	http.HandleFunc("/animal/get/{id}", animal.GetAnimal)
 	http.HandleFunc("/animal/list", animal.ListAnimal)
 	http.HandleFunc("/animal/post", animal.PostAnimal)

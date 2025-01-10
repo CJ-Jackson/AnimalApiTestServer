@@ -89,22 +89,22 @@ func DeleteAnimal(w http.ResponseWriter, r *http.Request) {
 		return
 	}
 
-	deleteAnimal := &DeleteAnimalData{}
-	err := Decode(deleteAnimal, r)
+	idStr := r.PathValue("id")
+	id, err := strconv.ParseInt(idStr, 10, 64)
 	if err != nil {
 		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusBadRequest)}, http.StatusBadRequest)
 		return
 	}
 
-	if int64(len(collectionOfAnimals)) <= deleteAnimal.Id {
+	if int64(len(collectionOfAnimals)) <= id {
 		Encode(w, r, HttpStatus{Status: http.StatusText(http.StatusNotFound)}, http.StatusNotFound)
 		return
 	}
 
-	collectionOfAnimals = append(collectionOfAnimals[:deleteAnimal.Id], collectionOfAnimals[deleteAnimal.Id+1:]...)
+	collectionOfAnimals = append(collectionOfAnimals[:id], collectionOfAnimals[id+1:]...)
 
 	Encode(w, r, Message{
-		Message: fmt.Sprintf("'%d' has been deleted.", deleteAnimal.Id),
+		Message: fmt.Sprintf("'%d' has been deleted.", id),
 	}, http.StatusOK)
 }
 

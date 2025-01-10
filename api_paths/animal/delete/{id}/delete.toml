@@ -3,11 +3,12 @@ summary = "Delete an animal"
 operationId = "deleteAnimal"
 tags = ["animals"]
 
-[openapi_paths.requestBody.content.'application/json'.schema]
-'$ref' = "#/components/schemas/DeleteAnimal"
-
-[openapi_paths.requestBody.content.'application/xml'.schema]
-'$ref' = "#/components/schemas/DeleteAnimal"
+[[openapi_paths.parameters]]
+name = "id"
+in = "path"
+description = "Animal Id"
+required = true
+schema = { type = "integer", format = "int64" }
 
 [openapi_paths.responses.200]
 description = "An object that contains the message"
