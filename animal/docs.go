@@ -17,6 +17,8 @@ const html = `<!doctype html>
     <rapi-doc spec-url="/doc/openapi" 
       render-style="view" 
       theme="dark"
+      allow-spec-url-load="false"
+      allow-spec-file-load="false"
     > </rapi-doc>
   </body>
 </html>`
